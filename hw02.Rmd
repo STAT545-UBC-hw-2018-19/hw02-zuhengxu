@@ -253,7 +253,9 @@ a %>%
   theme_bw()+
   labs(title="Life expectancy in Canada", y="longevity")
 ```
+It's obviously that people's life expectancy in Canada keep increasing from 1950 to 2007.
 
+Now let's explore from Euro and Asia
 ```{r}
 # select and filter data from Euro and Asia, concentrate on the year after 1980
 h = a%>% 
@@ -270,6 +272,7 @@ h %>%
 We can defitely reach the conclusion that people have higher life expectancy in Euro than in Asia. In the meanwhile, data of both continents have a rising tendency in life expectany.
 
 ```{r}
+#Comparing GDPpercap in Aisa and Euro in recent year
 h %>% 
   ggplot(aes(year,gdpPercap,color = continent, shape = continent))+ 
   geom_point(alpha=0.8)+
