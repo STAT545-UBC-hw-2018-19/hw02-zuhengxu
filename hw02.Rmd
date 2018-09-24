@@ -160,6 +160,7 @@ ggplot(con,aes(continent,..count../sum(..count..))) +
 
 ```
 
+
 Now we clearly see the level and the distribution of `continent`, lets head up to quantitive data.
 
 
@@ -185,6 +186,7 @@ ggplot(a,aes(lifeExp)) +
 From the output, we can see the peak occures around 70.
 
 Now we want to see the normality of `lifeExp`, using `qqplot`
+
 ```{r}
 qqnorm(a$lifeExp, pch = 1, frame = FALSE)
 ```
@@ -205,6 +207,7 @@ ggplot(a,aes(country,lifeExp,color=continent,shape=continent))+
   facet_grid(continent~.)
 ```
 
+
 We can see that it is not sensible to assume `lifeExp` is normal. Actually, it is quite reasonable, since there will be some reginal variation.
 
 In Europe, the life expectancy in each country is pretty high and is consistent, while the data of Asia showed huge variation between countries. Generally speaking, Europe and Oceania have high life expectancy of their citizens and the spread of the life time is more concentrated, based on samller IQR.
@@ -221,6 +224,7 @@ ggplot(a,aes(continent,lifeExp))+
   geom_point(position = "jitter", color= "black" ,alpha =0.4)
 ```
 
+
 Then I am going to explore 2 quantitive variables `lifeExp`and `gdpPercap`, since intuitively life expectancy should be realted to citizen's wealth level.
 
 ```{r}
@@ -228,6 +232,7 @@ Then I am going to explore 2 quantitive variables `lifeExp`and `gdpPercap`, sinc
 ggplot(a,aes(gdpPercap,lifeExp, color= continent, shape= continent))+
   geom_point()
 ```
+
 
 Generally speaking, higher gdp per capita tends to lead to longer longevity but there are some outliers in Aisa, which shows extremly high gdp percapita but with only average life expectancy.
 
@@ -238,11 +243,13 @@ Due to this scatter plot, we can also see the distribution of `lifeExp` and `gdp
 ggplot(a, aes(gdpPercap, fill= continent)) +
   geom_density(alpha=0.3)
 ```
+
 we can see in Afica, people have lower gdp percapita and smaller variarion while oceania have wider spread.
 
 # Use `filter `, `select` and ` %>% `
 
 To see the tendency of life expectancy in canada.
+
 ```{r}
 #filter all canada data, line plot of life expectancy in canada
 a %>% 
@@ -253,9 +260,11 @@ a %>%
   theme_bw()+
   labs(title="Life expectancy in Canada", y="longevity")
 ```
+
 It's obviously that people's life expectancy in Canada keep increasing from 1950 to 2007.
 
 Now let's explore from Euro and Asia
+
 ```{r}
 # select and filter data from Euro and Asia, concentrate on the year after 1980
 h = a%>% 
@@ -269,6 +278,7 @@ h %>%
   scale_x_continuous(breaks=c(1982,1987,1992,1997,2002,2007),labels=c("1982","1987","1992","1997","2002","2007"))+
   labs(title=" Comparing life expectancy in Aisa and Euro in recent years")
 ```
+
 We can defitely reach the conclusion that people have higher life expectancy in Euro than in Asia. In the meanwhile, data of both continents have a rising tendency in life expectany.
 
 ```{r}
@@ -292,15 +302,19 @@ h %>%
 
 ```
 
+
 In Asia, it is not a simple linear relationship, especially in the former part, while in Euro, the relationship is pretty clearly, which is almost linear.
 
 # But I Want to do More!
 
 In this section, I will explore this piece of code whose aim is to get all subsets of data contains Rwanda or afghanistan:
+
 ```
 filter(gapminder, country == c("Rwanda", "Afghanistan"))
 ```
+
 First of all, let's figurte out if it is correct.
+
 ```{r}
 #etract col of country
 country=select(a, country)
